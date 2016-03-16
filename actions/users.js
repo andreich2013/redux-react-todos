@@ -1,33 +1,106 @@
+import UsersApi from '../middleware/UsersApi'
+
+const api = new UsersApi();
+
 const makeAction = (type) => {
   return (...rest) => {
     return {
       type,
-      //...rest
+      data: rest
     }
   }
 }
 
 
 
-export const REQUEST = 'REQUEST';
-export const RECEIVE_SUCCESS = 'RECEIVE_SUCCESS';
-export const RECEIVE_ERROR = 'RECEIVE_ERROR';
+export const USERS_CREATE_REQUEST = "USERS_CREATE_REQUEST";
+export const USERS_CREATE_RECEIVE_SUCCESS = "USERS_CREATE_RECEIVE_SUCCESS";
+export const USERS_CREATE_RECEIVE_ERROR = "USERS_CREATE_RECEIVE_ERROR";
 
-export const USERS_CREATE = 'USERS_CREATE';
-export const USERS_READ = 'USERS_READ';
-export const USERS_UPDATE = 'USERS_UPDATE';
-export const USERS_DELETE = 'USERS_DELETE';
+export const USERS_READ_REQUEST = "USERS_READ_REQUEST";
+export const USERS_READ_RECEIVE_SUCCESS = "USERS_READ_RECEIVE_SUCCESS";
+export const USERS_READ_RECEIVE_ERROR = "USERS_READ_RECEIVE_ERROR";
 
-export const createUsers = (data) => makeAction(USERS_CREATE);
+export const USERS_UPDATE_REQUEST = "USERS_UPDATE_REQUEST";
+export const USERS_UPDATE_RECEIVE_SUCCESS = "USERS_UPDATE_RECEIVE_SUCCESS";
+export const USERS_UPDATE_RECEIVE_ERROR = "USERS_UPDATE_RECEIVE_ERROR";
+
+export const USERS_DELETE_REQUEST = "USERS_DELETE"
+export const USERS_DELETE_RECEIVE_SUCCESS = "USERS_DELETE_RECEIVE_SUCCESS";
+export const USERS_DELETE_RECEIVE_ERROR = "USERS_DELETE_RECEIVE_ERROR";
+
+
+
+export const usersCreateRequest = makeAction(USERS_CREATE_REQUEST);
+export const usersCreateReceiveSuccess = makeAction(USERS_CREATE_RECEIVE_SUCCESS);
+export const usersCreateReceiveError = makeAction(USERS_CREATE_RECEIVE_ERROR);
+
+export const usersReadRequest = makeAction(USERS_READ_REQUEST);
+export const usersReadReceiveSuccess = makeAction(USERS_READ_RECEIVE_SUCCESS);
+export const usersReadReceiveError = makeAction(USERS_READ_RECEIVE_ERROR);
+
+export const usersUpdateRequest = makeAction(USERS_UPDATE_REQUEST);
+export const usersUpdateReceiveSuccess = makeAction(USERS_UPDATE_RECEIVE_SUCCESS);
+export const usersUpdateReceiveError = makeAction(USERS_UPDATE_RECEIVE_ERROR);
+
+export const usersDeleteRequest = makeAction(USERS_DELETE_REQUEST);
+export const usersDeleteReceiveSuccess = makeAction(USERS_DELETE_RECEIVE_SUCCESS);
+export const usersDeleteReceiveError = makeAction(USERS_DELETE_RECEIVE_ERROR);
+
+
+
+export const createUsers = (dispatch) => {
+  dispatch(usersCreateRequest());
+  api.create()
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch(usersCreateReceiveSuccess(json));
+        return json;
+      })
+      .catch((json) => {
+        dispatch(usersCreateReceiveError(json));
+        return json;
+      })
+};
+
 export const readUsers = (dispatch) => {
+  dispatch(usersReadRequest());
   api.read()
       .then((response) => response.json())
-      .then(dispatch(`${type}.${RECEIVE_SUCCESS}`))
-
-  return {
-    type: USERS_READ,
-    list: ids || []
-  }
+      .then((json) => {
+        dispatch(usersReadReceiveSuccess(json));
+        return json;
+      })
+      .catch((json) => {
+        dispatch(usersReadReceiveError(json));
+        return json;
+      })
 };
-export const updateUsers = (id) => makeAction(USERS_UPDATE);
-export const deleteUsers = (id) => makeAction(USERS_DELETE);
+
+export const updateUsers = (dispatch, id) => {console.log(id);
+  dispatch(usersUpdateRequest(id));
+  api.update()
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch(usersUpdateReceiveSuccess(json));
+        return json;
+      })
+      .catch((json) => {
+        dispatch(usersUpdateReceiveError(json));
+        return json;
+      })
+};
+
+export const deleteUsers =  (dispatch, id) => {
+  dispatch(usersDeleteRequest(id));
+  api.delete()
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch(usersDeleteReceiveSuccess(json));
+        return json;
+      })
+      .catch((json) => {
+        dispatch(usersDeleteReceiveError(json));
+        return json;
+      })
+};
