@@ -7,12 +7,15 @@ class Users extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //nextProps.onRead();
+
     }
 
     render() {
-        const { list, onEdit, onDelete} = this.props
+        const { list, isFetching, onEdit, onDelete} = this.props
+
         return (
+            <div>
+                {isFetching ? '...loading' : 'ready'}
             <table>
                 <thead>
                 <tr>
@@ -33,6 +36,7 @@ class Users extends Component {
                 )}
                 </tbody>
             </table>
+                </div>
         )
     }
 }

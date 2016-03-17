@@ -1,52 +1,81 @@
 import {
-    USERS_CREATE, USERS_READ, USERS_UPDATE, USERS_DELETE,
-    REQUEST, RECEIVE_SUCCESS, RECEIVE_ERROR
+    USERS_CREATE_REQUEST, USERS_CREATE_RECEIVE_SUCCESS, USERS_CREATE_RECEIVE_ERROR,
+    USERS_READ_REQUEST, USERS_READ_RECEIVE_SUCCESS, USERS_READ_RECEIVE_ERROR,
+    USERS_UPDATE_REQUEST, USERS_UPDATE_RECEIVE_SUCCESS, USERS_UPDATE_RECEIVE_ERROR,
+    USERS_DELETE_REQUEST, USERS_DELETE_RECEIVE_SUCCESS, USERS_DELETE_RECEIVE_ERROR
 } from '../actions/users'
 
 const updateState = (state, data) => Object.assign({}, state, data || {});
 
-const initAsync = {
+const init = {
   isFetching: false,
-  ids: []
-};
-
-const makeAsync = (type) => {
-  return function (state, action) {
-    switch (action.type) {
-      case [`${type}.${REQUEST}`]:
-        return updateState(state, {
-          isFetching: true
-        });
-      case [`${type}.${RECEIVE_SUCCESS}`]:
-        return updateState(state, {
-          isFetching: false,
-          items: action.items
-        });
-      case [`${type}.${RECEIVE_ERROR}`]:
-        return updateState(state, {
-          isFetching: false
-        });
-      default:
-        return state;
-    }
-  }
+  items: [],
+  item: false
 }
 
-let asyncCreate = makeAsync(USERS_CREATE)
-let asyncRead = makeAsync(USERS_READ)
-let asyncUpdate = makeAsync(USERS_UPDATE)
-let asyncDelete = makeAsync(USERS_DELETE)
+const users = (state = init, action) => {
+  var [data, id] = action.data ? action.data : [];
 
-const users = (state = [], action) => {
   switch (action.type) {
-    case "USERS_CREATE":
-      return (state, action) => asyncCreate;
-    case "USERS_READ":
-      return (state, action) => asyncRead;
-    case "USERS_UPDATE":
-      return (state, action) => asyncUpdate;
-    case "USERS_DELETE":
-      return (state, action) => asyncDelete;
+    case "USERS_CREATE_REQUEST":
+      return updateState(state, {
+        isFetching: true
+      });
+    case "USERS_CREATE_RECEIVE_SUCCESS":
+      state.items.push(data);
+
+      return updateState(state, {
+        isFetching: false
+      });
+    case "USERS_CREATE_RECEIVE_ERROR":
+      return updateState(state, {
+        isFetching: false
+      });
+    case "USERS_READ_REQUEST":
+      return updateState(state, {
+        isFetching: true
+      });
+    case "USERS_READ_RECEIVE_SUCCESS":
+      return updateState(state, {
+        isFetching: false,
+        items: data || []
+      });
+    case "USERS_READ_RECEIVE_ERROR":
+      return updateState(state, {
+        isFetching: false
+      });
+    case "USERS_UPDATE_REQUEST":
+      return updateState(state, {
+        isFetching: true
+      });
+    case "USERS_UPDATE_RECEIVE_SUCCESS":
+      state.items.splice(state.items.indexOf(state.items.find((item) => item.id === id)), 1, data);
+
+      return updateState(state, {
+        isFetching: false
+      });
+    case "USERS_UPDATE_RECEIVE_ERROR":
+      return updateState(state, {
+        isFetching: false
+      });
+    case "USERS_DELETE_REQUEST":
+      return updateState(state, {
+        isFetching: true
+      });
+    case "USERS_DELETE_RECEIVE_SUCCESS":
+      state.items.splice(state.items.indexOf(state.items.find((item) => item.id === id)), 0);
+
+      return updateState(state, {
+        isFetching: false
+      });
+    case "USERS_DELETE_RECEIVE_ERROR":
+      return updateState(state, {
+        isFetching: false
+      });
+    case "USER_CHOOSE":
+      return updateState(state, {
+        item: state.items.find((item) => item.id === id)
+      });
     default:
       return state;
   }

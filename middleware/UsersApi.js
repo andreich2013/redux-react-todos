@@ -1,32 +1,43 @@
+function buildHeaders(data) {
+    return Object({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }, data || {});
+}
+
 class UsersApi {
 
     constructor() {
-        this.endpoint = './assets/fixture'
+        this.endpoint = '/api/users';
     }
 
     create(data) {
-        return fetch(this.endpoint, {
+        return fetch(`${this.endpoint}`, {
             method: "post",
+            headers: buildHeaders(),
             body: JSON.stringify(data)
         });
     }
 
     read() {
-        return fetch(this.endpoint, {
-            method: "get"
+        return fetch(`${this.endpoint}`, {
+            method: "get",
+            headers: buildHeaders()
         });
     }
 
     update(id, data) {
         return fetch(`${this.endpoint}/${id}`, {
             method: "put",
+            headers: buildHeaders(),
             body: JSON.stringify(data)
         });
     }
 
     delete(id) {
         return fetch(`${this.endpoint}/${id}`, {
-            method: "delete"
+            method: "delete",
+            headers: buildHeaders()
         });
     }
 
