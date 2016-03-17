@@ -21,9 +21,9 @@ const mapDispatchToProps = (dispatch) => {
       e.target.reset();
     },
     onChange: (e, item) => {
-      e.preventDefault()
-
-      dispatch(userToggleUpdateButtonState())
+      console.log(e, item, prop)
+      dispatch(userToggleUpdateButtonState(item))
+      dispatch(onDataChange(prop, item.prop))
     }
   }
 }

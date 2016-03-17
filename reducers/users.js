@@ -76,6 +76,16 @@ const users = (state = init, action) => {
       return updateState(state, {
         item: state.items.find((item) => item.id === id)
       });
+    // case "USER_TOGGLE_UPDATE_BUTTON_STATE":
+    //   return updateState(state, {
+    //     item: Object.assign({}, state.item, {
+    //       []
+    //     })
+    //   });
+    // case "DATA_CHANGED":
+    //   return updateState(state, {
+    //     item: state.items.find((item) => item.id === id)
+    //   });
     default:
       return state;
   }

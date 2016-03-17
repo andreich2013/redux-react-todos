@@ -2,33 +2,43 @@ import React, { PropTypes, Component } from 'react'
 import isEqual from '../node_modules/lodash/isEqual'
 import serialize from '../node_modules/form-serialize/index'
 import Utils from '../middleware/Utils'
+import TextField from 'material-ui/lib/text-field';
+import RaisedButton from 'material-ui/lib/raised-button';
 
 class UserView extends Component {
 
     constructor(props) {
         super(props);
+    }
 
+    componentDidMount() {
+        this.stable = Object.assign({}, this.props.item);
+    }
+
+    componentWillReceiveProps(nextProps) {
         this.item = Object.assign({}, this.props.item);
         this.stable = Object.assign({}, this.props.item);
     }
 
-    componentDidMount() {
-        
+    onChange(e, item) {
+      console.log(e);
     }
 
     onSubmit(e) {
       e.preventDefault();
 
       let data = serialize(this.refs.item, { hash: true });
-
     }
+
+    handleChange (event) {
+      console.log(this.state);
+      this.setState({
+        item: event.target.value,
+      });
+    };
 
     isItemChanged() {
-      return isEqual(this.item, this.stable);
-    }
-
-    componentWillReceiveProps() {
-
+      return isEqual(this.props.item, item);
     }
 
     render() {
@@ -38,28 +48,39 @@ class UserView extends Component {
 
         const _default = (
             <form ref="item" onSubmit={(e) => this.onSubmit(e)}>
-                <label>First Name</label>
-                <input type="text"
-                       name="firstName"
-                       value={item.firstName}
-                       onChange={() => this.onChange(e, item)}
-                       disabled={isFetching}/>
+                <TextField
+                  ref="firstName"
+                  floatingLabelText="First Name"
+                  hintText="type value"
+                  value={item.firstName}
+                  onChange={(e) => this.handleChange(e, item, "firstName")}
+                  disabled={isFetching}
+                />
                 <br/>
-                <label>Last Name</label>
-                <input type="text"
-                       name="lastName"
-                       value={item.lastName}
-                       onChange={() => this.onChange(e, item)}
-                       disabled={isFetching}/>
+                <TextField
+                  ref="lastName"
+                  floatingLabelText="Last Name"
+                  hintText="type value"
+                  value={item.lastName}
+                  onChange={(e) => onChange(e, item, "lastName")}
+                  disabled={isFetching}
+                />
                 <br/>
-                <label>Age</label>
-                <input type="number"
-                       name="age"
-                       value={item.age}
-                       onChange={() => this.onChange(e, item)}
-                       disabled={isFetching}/>
+                <TextField
+                  type="number"
+                  ref="age"
+                  floatingLabelText="Age"
+                  hintText="type value"
+                  value={item.age}
+                  onChange={(e) => onChange(e, item, "age")}
+                  disabled={isFetching}
+                />
                 <br/>
-                <button type="submit" disabled={canUpdate || isFetching}>Update</button>
+                <RaisedButton 
+                  label="Primary" 
+                  primary={true} 
+                  disabled={canUpdate || isFetching}
+                />
             </form>
         );
 
