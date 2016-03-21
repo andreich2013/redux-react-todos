@@ -33,6 +33,8 @@ export const USER_CHOOSE = "USER_CHOOSE";
 
 export const USER_TOGGLE_UPDATE_BUTTON_STATE = "USER_TOGGLE_UPDATE_BUTTON_STATE";
 
+export const DATA_CHANGED = "DATA_CHANGED";
+
 
 
 export const usersCreateRequest = makeAction(USERS_CREATE_REQUEST);
@@ -54,6 +56,7 @@ export const usersDeleteReceiveError = makeAction(USERS_DELETE_RECEIVE_ERROR);
 export const userChoose = makeAction(USER_CHOOSE);
 
 export const userToggleUpdateButtonState = makeAction(USER_TOGGLE_UPDATE_BUTTON_STATE);
+export const onDataChange = makeAction(DATA_CHANGED);
 
 
 
