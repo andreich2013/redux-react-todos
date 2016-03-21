@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { updateUsers, userToggleUpdateButtonState } from '../actions/users'
-import UserViewComponent from '../components/UserView'
+import UserViewComponent from '../components/UserView/UserView'
 
 
 const mapStateToProps = (state) => {
