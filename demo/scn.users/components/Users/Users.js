@@ -15,7 +15,7 @@ class Users extends Component {
 
     return (
       <div>
-        {isFetching ? '...loading' : 'ready'}
+        {isFetching ? '...loading' : ''}
         <table>
           <thead>
           <tr>

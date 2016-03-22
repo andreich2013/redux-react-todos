@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     onSubmit: (event, item) => {
       event.preventDefault();
 
-      updateUsers(dispatch, item.id, item);
+      dispatch(updateUsers(item.id, item));
 
       event.target.reset();
     },
