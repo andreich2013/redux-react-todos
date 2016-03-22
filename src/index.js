@@ -5,11 +5,8 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createStore from './scn.main/store/createStore';
-
-// import ApiClient from './helpers/ApiClient';
 import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-// import { ReduxAsyncConnect } from 'redux-async-connect';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
 import getRoutes from './routes';
 

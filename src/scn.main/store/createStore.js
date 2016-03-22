@@ -1,8 +1,8 @@
 import { createStore as _createStore, applyMiddleware } from 'redux';
-import promiseMiddleware from '../../scn.common/middlewares/promise';
+import thunkMiddleware from 'redux-thunk';
+import asyncMiddleware from 'redux-async';
 import { syncHistory } from 'react-router-redux';
 import rootReducer from '../../../reducers';
-import thunkMiddleware from 'redux-thunk';
 
 export default function createStore(history, initialState) {
   // Sync dispatched route actions to the history
@@ -10,7 +10,7 @@ export default function createStore(history, initialState) {
 
   const middleware = [
     thunkMiddleware,
-    promiseMiddleware,
+    asyncMiddleware,
     reduxRouterMiddleware
   ];
 

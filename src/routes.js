@@ -1,5 +1,5 @@
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
+import { IndexRoute, Route } from 'react-router';
 import {
     UsersList,
     UserView
@@ -7,7 +7,7 @@ import {
 import {
     Home
 } from './scn.home/containers';
-import App from './scn.main/components/App';
+import App from './scn.main/components/App/App';
 
 export default () => {
   // const requireLogin = (nextState, replace, cb) => {
@@ -33,9 +33,8 @@ export default () => {
   return (
       <Route path="/" component={App}>
           <IndexRoute component={Home}/>
-          <Route path="users" component={UsersList}>
-              <Route path=":userId" component={UserView}/>
-          </Route>
+          <Route path="users" component={UsersList}></Route>
+          <Route path="users/:userId" component={UserView}/>
       </Route>
   );
 };

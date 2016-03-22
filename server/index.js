@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
-var config = require('../webpack.config');
+var config = require('../webpack.config.js');
 var fs = require('fs');
 var root = path.resolve(__dirname, '../');
 
@@ -26,7 +26,7 @@ function readJSONFile(filename, callback) {
   });
 }
 
-function extendRequest(res) {
+function setHeaders(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Accept', 'application/json');
   res.setHeader('Content-Type', 'application/json');
@@ -36,7 +36,7 @@ app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output
 app.use(webpackHotMiddleware(compiler));
 
 app.get('/[^(api)]{0,}', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(root + '/src/index.html');
 });
 
 app.get('/api/users', function(req, res) {
@@ -45,7 +45,7 @@ app.get('/api/users', function(req, res) {
       throw err;
     }
 
-    extendRequest(res);
+    setHeaders(res);
 
     res.json(data);
   });

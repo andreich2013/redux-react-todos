@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import User from './User';
+import User from './../User/User';
 
 class Users extends Component {
 	componentDidMount() {

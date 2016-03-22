@@ -2,7 +2,7 @@ import React from 'react';
 // import UsersList from '../../scn.users/containers/UsersList';
 // import UserView from '../../scn.users/containers/UserView';
 import { Link } from 'react-router';
-import AppBar from 'material-ui/lib/app-bar';
+import AppBar from '../../../../node_modules/material-ui/lib/app-bar';
 
 const App = ({children}) => (
   <div>

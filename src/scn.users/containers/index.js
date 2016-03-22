@@ -1,2 +1,2 @@
-export UsersList from './UsersList';
-export UserView from './UserView';
+export UsersList from './UsersList/UsersList';
+export UserView from './UserView/UserView';

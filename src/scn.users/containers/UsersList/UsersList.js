@@ -1,14 +1,14 @@
-import { connect } from 'react-redux'
-import { readUsers, createUsers, chooseUser, deleteUsers } from '../actions/users'
-import Users from '../components/Users'
+import { connect } from 'react-redux';
+import { readUsers, createUsers, chooseUser, deleteUsers } from '../../actions/users';
+import Users from '../../components/Users/Users';
 
 
 const mapStateToProps = (state) => {
   return {
     list: state.users.items,
     isFetching: state.users.isFetching
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,12 +16,12 @@ const mapDispatchToProps = (dispatch) => {
     onRead: () => readUsers(dispatch),
     onEdit: (id) => chooseUser(dispatch, id),
     onDelete: (id) => deleteUsers(dispatch, id)
-  }
-}
+  };
+};
 
 const UsersList = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Users)
+)(Users);
 
-export default UsersList
+export default UsersList;

@@ -7,8 +7,8 @@ function buildHeaders(data) {
 
 class UsersApi {
 
-  constructor() {
-    this.endpoint = '/api/users';
+  constructor(url = '') {
+    this.endpoint = url;
   }
 
   create(data) {
@@ -43,4 +43,4 @@ class UsersApi {
 
 }
 
-export default UsersApi;
+export default new UsersApi('/api/users');

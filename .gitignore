@@ -1,7 +1,11 @@
-.idea
+.idea/
+nbproject/
+*.sublime-project
 node_modules
-npm-debug.log
 .DS_Store
 dist
-lib
 coverage
+*.iml
+webpack-assets.json
+webpack-stats.json
+npm-debug.log
