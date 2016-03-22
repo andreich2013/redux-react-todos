@@ -36,11 +36,11 @@ app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output
 app.use(webpackHotMiddleware(compiler));
 
 app.get('/[^(api)]{0,}', function(req, res) {
-  res.sendFile(root + '/src/index.html');
+  res.sendFile(root + '/demo/index.html');
 });
 
 app.get('/api/users', function(req, res) {
-  readJSONFile(root + '/assets/fixture/users.json', function(err, data) {
+  readJSONFile(root + '/project/assets/fixture/users.json', function(err, data) {
     if (err) {
       throw err;
     }

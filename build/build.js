@@ -1,12 +1,16 @@
 (function() {
 
-  var webpack = require('webpack'),
-      webpackDevMiddleware = require('webpack-dev-middleware'),
-      webpackHotMiddleware = require('webpack-hot-middleware'),
-      config = require('../webpack.config.js'),
-      compiler = webpack(config);
+  var path = require('path'),
+      fs = require('fs'),
+      root = path.resolve(__dirname, '../'),
+      webpack = require('webpack'),
+      config = require(root + '/webpack.config.js'),
+      compiler = webpack(config),
+      entryFile = root + '/dist/index.html';
 
-  webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath });
-  webpackHotMiddleware(compiler);
+  compiler.run(function(err, stats) {
+    fs.writeFileSync(entryFile);
+    fs.createReadStream(root + '/demo/index.html').pipe(fs.createWriteStream(entryFile));
+  });
 
 }());

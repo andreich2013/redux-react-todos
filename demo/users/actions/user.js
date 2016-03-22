@@ -1,4 +1,4 @@
-import { createAction } from '../../scn.common/helpers/utils';
+import { createAction } from 'services/helpers/utils';
 
 import {
   USER_CHOOSE, USER_TOGGLE_UPDATE_BUTTON_STATE

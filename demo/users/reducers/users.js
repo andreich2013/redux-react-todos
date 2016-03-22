@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-create-reducer';
-import { updateState } from '../../scn.common/helpers/utils';
+import { updateState } from 'services/helpers/utils';
 
 import {
   USERS_CREATE_REQUEST, USERS_CREATE_RECEIVE_SUCCESS, USERS_CREATE_RECEIVE_ERROR,

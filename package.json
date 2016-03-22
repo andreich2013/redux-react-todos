@@ -9,7 +9,7 @@
   },
   "homepage": "https://github.com/andreich2013/scn-smart-tv-framework",
   "scripts": {
-    "start": "node ./server/index.js",
+    "start": "node ./demo/server.js",
     "lint": "eslint -c .eslintrc src api"
   },
   "dependencies": {

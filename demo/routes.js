@@ -3,11 +3,11 @@ import { IndexRoute, Route } from 'react-router';
 import {
     UsersList,
     UserView
-} from './scn.users/containers';
+} from './users/containers';
 import {
     Home
-} from './scn.home/containers';
-import App from './scn.main/components/App/App';
+} from './home/containers';
+import App from './main/components/App/App';
 
 export default () => {
   // const requireLogin = (nextState, replace, cb) => {
