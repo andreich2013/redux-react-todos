@@ -16,14 +16,14 @@ class UsersApi {
       method: 'post',
       headers: buildHeaders(),
       body: JSON.stringify(data)
-    });
+    }).then((response) => response.json());
   }
 
   read() {
     return fetch(`${this.endpoint}`, {
       method: 'get',
       headers: buildHeaders()
-    });
+    }).then((response) => response.json());
   }
 
   update(id, data) {
@@ -31,14 +31,14 @@ class UsersApi {
       method: 'put',
       headers: buildHeaders(),
       body: JSON.stringify(data)
-    });
+    }).then((response) => response.json());
   }
 
   delete(id) {
     return fetch(`${this.endpoint}/${id}`, {
       method: 'delete',
       headers: buildHeaders()
-    });
+    }).then((response) => response.json());
   }
 
 }

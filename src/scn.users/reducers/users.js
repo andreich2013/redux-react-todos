@@ -15,7 +15,7 @@ const init = {
   item: false
 };
 
-export const users = createReducer(init, {
+const users = createReducer(init, {
 
   [USERS_CREATE_REQUEST](state, action) {
     return updateState(state, {
@@ -24,7 +24,7 @@ export const users = createReducer(init, {
   },
 
   [USERS_CREATE_RECEIVE_SUCCESS](state, action) {
-    const [ data ] = action.payload;
+    const {data} = action.payload;
 
     state.items.push(data);
 
@@ -46,7 +46,7 @@ export const users = createReducer(init, {
   },
 
   [USERS_READ_RECEIVE_SUCCESS](state, action) {
-    const [ data ] = action.payload;
+    const { data } = action.payload;
 
     return updateState(state, {
       isFetching: false,
@@ -67,7 +67,7 @@ export const users = createReducer(init, {
   },
 
   [USERS_UPDATE_RECEIVE_SUCCESS](state, action) {
-    const [data, id] = action.payload;
+    const { data, id } = action.payload;
 
     state.items.splice(state.items.indexOf(state.items.find((item) => item.id === id)), 1, data);
 
@@ -89,7 +89,7 @@ export const users = createReducer(init, {
   },
 
   [USERS_DELETE_RECEIVE_SUCCESS](state, action) {
-    const [data, id] = action.payload;
+    const { id } = action.payload;
 
     state.items.splice(state.items.indexOf(state.items.find((item) => item.id === id)), 0);
 
@@ -104,8 +104,8 @@ export const users = createReducer(init, {
     });
   },
 
-  [USER_CHOOSE](state, action) {
-    const [data, id] = action.payload;
+  [USER_CHOOSE](state, action) {console.log(action);
+    const [ id ] = action.payload;
 
     return updateState(state, {
       item: state.items.find((item) => item.id === id)

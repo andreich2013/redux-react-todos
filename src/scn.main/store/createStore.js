@@ -2,7 +2,7 @@ import { createStore as _createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import asyncMiddleware from 'redux-async';
 import { syncHistory } from 'react-router-redux';
-import rootReducer from '../../../reducers';
+import rootReducer from '../reducers';
 
 export default function createStore(history, initialState) {
   // Sync dispatched route actions to the history
