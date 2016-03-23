@@ -72,7 +72,7 @@ UserView.propTypes = {
     lastName: PropTypes.string.isRequired,
     age: PropTypes.number.isRequired
   }).isRequired).isRequired,
-  isFetching: PropTypes.boolean.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   canUpdate: PropTypes.func.isRequired
 };
 

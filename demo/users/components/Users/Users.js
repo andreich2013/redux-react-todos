@@ -49,7 +49,7 @@ Users.propTypes = {
     lastName: PropTypes.string.isRequired
   }).isRequired).isRequired,
   children: PropTypes.object.isRequired,
-  isFetching: PropTypes.boolean.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   onRead: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired
