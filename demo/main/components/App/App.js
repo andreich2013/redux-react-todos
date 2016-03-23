@@ -11,7 +11,7 @@ const App = ({children}) => (
           title="Title"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
       >
-        <RaisedButton secondary={true}
+        <RaisedButton secondary
                       label="Users"
                       containerElement={<Link to="/users"/>} />
       </AppBar>

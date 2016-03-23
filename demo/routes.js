@@ -33,7 +33,7 @@ export default () => {
   return (
       <Route path="/" component={App}>
           <IndexRoute component={Home}/>
-          <Route path="users" component={UsersList}></Route>
+          <Route path="users" component={UsersList}/>
           <Route path="users/:userId" component={UserView}/>
       </Route>
   );

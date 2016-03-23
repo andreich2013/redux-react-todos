@@ -17,7 +17,7 @@ const init = {
 
 const users = createReducer(init, {
 
-  [USERS_CREATE_REQUEST](state, action) {
+  [USERS_CREATE_REQUEST](state) {
     return updateState(state, {
       isFetching: true
     });
@@ -33,13 +33,13 @@ const users = createReducer(init, {
     });
   },
 
-  [USERS_CREATE_RECEIVE_ERROR](state, action) {
+  [USERS_CREATE_RECEIVE_ERROR](state) {
     return updateState(state, {
       isFetching: false
     });
   },
 
-  [USERS_READ_REQUEST](state, action) {
+  [USERS_READ_REQUEST](state) {
     return updateState(state, {
       isFetching: true
     });
@@ -54,13 +54,13 @@ const users = createReducer(init, {
     });
   },
 
-  [USERS_READ_RECEIVE_ERROR](state, action) {
+  [USERS_READ_RECEIVE_ERROR](state) {
     return updateState(state, {
       isFetching: false
     });
   },
 
-  [USERS_UPDATE_REQUEST](state, action) {
+  [USERS_UPDATE_REQUEST](state) {
     return updateState(state, {
       isFetching: true
     });
@@ -76,13 +76,13 @@ const users = createReducer(init, {
     });
   },
 
-  [USERS_UPDATE_RECEIVE_ERROR](state, action) {
+  [USERS_UPDATE_RECEIVE_ERROR](state) {
     return updateState(state, {
       isFetching: false
     });
   },
 
-  [USERS_DELETE_REQUEST](state, action) {
+  [USERS_DELETE_REQUEST](state) {
     return updateState(state, {
       isFetching: true
     });
@@ -98,13 +98,13 @@ const users = createReducer(init, {
     });
   },
 
-  [USERS_DELETE_RECEIVE_ERROR](state, action) {
+  [USERS_DELETE_RECEIVE_ERROR](state) {
     return updateState(state, {
       isFetching: false
     });
   },
 
-  [USER_CHOOSE](state, action) {console.log(action);
+  [USER_CHOOSE](state, action) {
     const [ id ] = action.payload;
 
     return updateState(state, {

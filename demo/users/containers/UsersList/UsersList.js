@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux'
+import { push } from 'react-router-redux';
 import { chooseUser } from '../../actions/user';
 import { readUsers, createUsers, deleteUsers } from '../../actions/users';
 import Users from '../../components/Users/Users';

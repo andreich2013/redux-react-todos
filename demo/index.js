@@ -9,7 +9,8 @@ import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
 import getRoutes from './routes';
-import styles from 'assets/styles/main.scss';
+
+require('assets/styles/main.scss');
 
 const history = useScroll(() => browserHistory)();
 const store = createStore(history, {});
