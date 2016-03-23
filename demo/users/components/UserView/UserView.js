@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import style from './UserView.scss';
 // import isEqual from 'lodash/isEqual';
 
 class UserView extends Component {
@@ -30,7 +31,6 @@ class UserView extends Component {
 
   render() {
     const { item, isFetching, canUpdate } = this.props;
-    const style = require('./UserView.scss');
 
     const _noItem = (<div>No item choose</div>);
 
